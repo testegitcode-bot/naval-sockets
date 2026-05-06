@@ -1,0 +1,448 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║                    DIAGRAMA VISUAL - ESTRUTURA PASTA                      ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+
+ÁRVORE DE ARQUIVOS
+════════════════════════════════════════════════════════════════════════════
+
+Codigo/
+│
+├─────────────────────────────────────────────────────────────────────────
+│                         📦 CÓDIGO-FONTE (564 linhas)
+├─────────────────────────────────────────────────────────────────────────
+│
+├── BatalhaNavalLogic.java ......... LÓGICA DO JOGO (207 linhas)
+│   │
+│   └─ O QUE FAZ:
+│      ├─ Matriz 10x10 para cada tabuleiro
+│      ├─ Posicionar 8 navios
+│      ├─ Validar jogadas (acerto/erro)
+│      ├─ Controlar turnos
+│      ├─ IA aleatória
+│      ├─ Detectar vitória/derrota
+│      └─ Placeholders para Socket
+│
+├── BatalhaNavalGUI.java ........... INTERFACE GRÁFICA (357 linhas)
+│   │
+│   └─ O QUE FAZ:
+│      ├─ Criar janela Swing
+│      ├─ Desenhar 200 botões (2x 10x10)
+│      ├─ Colorir botões (azul, cinza, vermelho, branco)
+│      ├─ Processar cliques
+│      ├─ Atualizar visual
+│      ├─ Mostrar status/turno
+│      └─ Diálogos de vitória/derrota
+│
+├─────────────────────────────────────────────────────────────────────────
+│                  📘 DOCUMENTAÇÃO (1.648 linhas)
+├─────────────────────────────────────────────────────────────────────────
+│
+├── LEIA_PRIMEIRO.txt .............. INTRODUÇÃO (Comece aqui!)
+│   │
+│   └─ PERFIL: Iniciante
+│      └─ CONTEÚDO:
+│         ├─ Bem-vindo
+│         ├─ Como rodar em 3 minutos
+│         ├─ Requisitos
+│         ├─ Qual documento ler
+│         ├─ Como jogar
+│         └─ Troubleshooting
+│
+├── INSTRUCOES_EXECUCAO.md ........ GUIA UNIVERSAL
+│   │
+│   └─ PERFIL: Todos
+│      └─ CONTEÚDO:
+│         ├─ Instalar Java (Windows/Mac/Linux)
+│         ├─ Compilar
+│         ├─ Executar
+│         ├─ Estrutura de arquivos
+│         ├─ Como jogar completo
+│         ├─ Estrutura do código
+│         └─ Troubleshooting
+│
+├── COMO_USAR_VSCODE.md ........... GUIA VS CODE
+│   │
+│   └─ PERFIL: Usuários VS Code
+│      └─ CONTEÚDO:
+│         ├─ Pré-requisitos (Java + VS Code)
+│         ├─ Abrir pasta no VS Code
+│         ├─ Compilar (Ctrl + `)
+│         ├─ Executar
+│         ├─ Atalhos úteis
+│         ├─ Code Runner
+│         ├─ Debugging
+│         └─ Troubleshooting VS Code
+│
+├── README.md ....................... DOCUMENTAÇÃO TÉCNICA
+│   │
+│   └─ PERFIL: Desenvolvedores
+│      └─ CONTEÚDO:
+│         ├─ Overview
+│         ├─ Características
+│         ├─ Como começar
+│         ├─ Gameplay
+│         ├─ Arquitetura (MVC)
+│         ├─ Estrutura de dados
+│         ├─ Métodos principais
+│         ├─ Implementar multiplayer
+│         └─ Troubleshooting
+│
+├── INDICE.md ....................... MAPA COMPLETO
+│   │
+│   └─ PERFIL: Quem quer tudo
+│      └─ CONTEÚDO:
+│         ├─ Descrição de cada arquivo
+│         ├─ Fluxo de execução
+│         ├─ Cores e estados
+│         ├─ Como contribuir
+│         ├─ Checklist de qualidade
+│         ├─ Próximas fases
+│         ├─ Estatísticas
+│         └─ Suporte rápido
+│
+├── GITHUB_UPLOAD.md ............... INSTRUÇÕES GITHUB
+│   │
+│   └─ PERFIL: Quem quer subir
+│      └─ CONTEÚDO:
+│         ├─ Pré-requisitos (Git, conta)
+│         ├─ Criar repositório
+│         ├─ git init
+│         ├─ git add .
+│         ├─ git commit
+│         ├─ git push
+│         ├─ Próximas atualizações
+│         └─ Troubleshooting Git
+│
+├── RESUMO_PROJETO.txt ............. RESUMO VISUAL
+│   │
+│   └─ PERFIL: Leitura rápida
+│      └─ CONTEÚDO:
+│         ├─ Lista de arquivos (visual)
+│         ├─ Requisitos implementados
+│         ├─ Como executar
+│         ├─ Cores (com RGB)
+│         ├─ Estrutura de dados
+│         ├─ Navios (tabela)
+│         ├─ Próximas expansões
+│         └─ Troubleshooting
+│
+├── ESTRUTURA_PASTA.md ............. ESTE DOCUMENTO
+│   │
+│   └─ PERFIL: Quem quer entender
+│      └─ CONTEÚDO:
+│         ├─ Árvore de arquivos
+│         ├─ Responsabilidade cada
+│         ├─ Fluxo de leitura
+│         ├─ Dependências
+│         └─ Quando usar cada um
+│
+├── DIAGRAMA_VISUAL.txt ............ DIAGRAMA EM ASCII
+│   │
+│   └─ PERFIL: Visualização
+│      └─ CONTEÚDO:
+│         ├─ Árvore visual
+│         ├─ Fluxos de dados
+│         ├─ Estrutura organização
+│         └─ Responsabilidades
+│
+├─────────────────────────────────────────────────────────────────────────
+│                  🔧 SCRIPTS DE EXECUÇÃO
+├─────────────────────────────────────────────────────────────────────────
+│
+├── run.sh .......................... EXECUÇÃO LINUX/macOS
+│   │
+│   └─ O QUE FAZ:
+│      ├─ Verifica Java
+│      ├─ Compila: javac *.java
+│      └─ Executa: java BatalhaNavalGUI
+│
+├── run.bat ......................... EXECUÇÃO WINDOWS
+│   │
+│   └─ O QUE FAZ:
+│      ├─ Verifica Java
+│      ├─ Compila: javac *.java
+│      └─ Executa: java BatalhaNavalGUI
+│
+├─────────────────────────────────────────────────────────────────────────
+│                  ⚙️ CONFIGURAÇÃO
+├─────────────────────────────────────────────────────────────────────────
+│
+└── .gitignore ..................... CONTROLE GIT
+    │
+    └─ O QUE IGNORA:
+       ├─ *.class (compilados)
+       ├─ *.jar, *.war, *.ear
+       ├─ .idea/, .vscode/
+       ├─ *.log
+       ├─ build/, dist/
+       └─ Deixa: *.java, *.md
+
+
+════════════════════════════════════════════════════════════════════════════
+                      FLUXO DE DEPENDÊNCIAS
+════════════════════════════════════════════════════════════════════════════
+
+                          LEIA_PRIMEIRO.txt
+                                 ↓
+                    (Usuário escolhe seu perfil)
+                    ↙        ↓        ↓        ↘
+                   ↙         ↓        ↓         ↘
+            Iniciante   Desenvolvedor VS Code   GitHub
+                ↓            ↓          ↓         ↓
+                ↓            ↓          ↓         ↓
+           run.sh/bat   README.md   COMO_USAR_  GITHUB_
+                                    VSCODE.md   UPLOAD.md
+
+
+════════════════════════════════════════════════════════════════════════════
+                    FLUXO DE LÓGICA DO CÓDIGO
+════════════════════════════════════════════════════════════════════════════
+
+        Usuario Executa
+              ↓
+        java BatalhaNavalGUI
+              ↓
+    ┌─────────────────────┐
+    │  BatalhaNavalGUI    │
+    │   (Interface)       │
+    └──────────┬──────────┘
+               ↓
+         Cria Janela
+    ┌─────────────────────┐
+    │ JFrame              │
+    │ ├─ 200 JButtons     │
+    │ ├─ JLabels         │
+    │ └─ Listeners       │
+    └──────────┬──────────┘
+               ↓
+         Cria Instância
+    ┌─────────────────────────────┐
+    │ BatalhaNavalLogic           │
+    │ ├─ 4 Matrizes 10x10         │
+    │ ├─ Navios posicionados      │
+    │ └─ Turnos controlados       │
+    └──────────┬──────────────────┘
+               ↓
+    Usuario Clica no Botão
+               ↓
+    realizarJogada(linha, coluna)
+               ↓
+    verificarJogada() → BatalhaNavalLogic
+               ↓
+         (1=acerto, 0=erro, -1=inválido)
+               ↓
+    Atualizar Cor do Botão
+               ↓
+    Verificar Vitória/Derrota
+               ↓
+         Se Erro: Timer 1.5s
+               ↓
+         turnoInimigo()
+               ↓
+    Alterna turno e repete
+
+
+════════════════════════════════════════════════════════════════════════════
+                  ORGANIZAÇÃO POR RESPONSABILIDADE
+════════════════════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ LÓGICA (BatalhaNavalLogic.java - Independente de GUI)                  │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│  int[][] meuTabuleiro ............ Seus navios                         │
+│  int[][] tabuleinoInimigo ........ Navios do inimigo                   │
+│  int[][] estadoTabuleinoMeu ...... Ataques sofridos                    │
+│  int[][] estadoTabuleinoInimigo .. Seus ataques                        │
+│  boolean minhaVez ................ Controle de turno                   │
+│                                                                         │
+│  + posicionarNavio(L, C, T, H)    Posiciona navio                      │
+│  + verificarJogada(L, C)        Valida ataque                         │
+│  + turnoInimigo()              IA aleatória                            │
+│  + verificarVitoria()          Detecta vitória                         │
+│  + verificarDerrota()          Detecta derrota                         │
+│  + enviarJogadaSocket()        PLACEHOLDER                             │
+│  + receberJogadaSocket()       PLACEHOLDER                             │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+
+                                  ↑↓ Usa
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ INTERFACE (BatalhaNavalGUI.java - Usa Swing + BatalhaNavalLogic)       │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│  JFrame mainWindow ............... Janela principal                    │
+│  JButton[][] botoes .............. 200 botões (10x10 x2)              │
+│  JLabel status ................... Mostra mensagens                    │
+│  JLabel turno .................... Mostra turno                        │
+│                                                                         │
+│  + inicializarInterface()       Cria GUI                               │
+│  + criarTabuleiro(bool)         Cria um tabuleiro                      │
+│  + realizarJogada(L, C)         Processa clique                        │
+│  + turnoInimigo()              Executa IA                             │
+│  + atualizarTabuleiroInimigo()  Refresh visual                         │
+│  + novoJogo()                  Reset                                   │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+
+
+════════════════════════════════════════════════════════════════════════════
+                    QUANDO USAR CADA DOCUMENTO
+════════════════════════════════════════════════════════════════════════════
+
+┌──────────────────────────┬──────────────────────────────────────────────┐
+│ Você quer...             │ Leia...                                      │
+├──────────────────────────┼──────────────────────────────────────────────┤
+│ Rodar agora              │ LEIA_PRIMEIRO.txt → run.sh/run.bat          │
+│ Entender como funciona   │ README.md                                    │
+│ Usar em VS Code          │ COMO_USAR_VSCODE.md                        │
+│ Instalar Java            │ INSTRUCOES_EXECUCAO.md                     │
+│ Mapa de navegação        │ INDICE.md                                   │
+│ Subir no GitHub          │ GITHUB_UPLOAD.md                            │
+│ Resumo rápido            │ RESUMO_PROJETO.txt                          │
+│ Entender esta pasta      │ ESTRUTURA_PASTA.md                          │
+│ Visualização gráfica     │ DIAGRAMA_VISUAL.txt (este)                 │
+│ Adicionar features       │ README.md + BatalhaNavalLogic.java          │
+│ Multiplicador com Socket │ INDICE.md "Como Contribuir"                │
+└──────────────────────────┴──────────────────────────────────────────────┘
+
+
+════════════════════════════════════════════════════════════════════════════
+                    FLUXO DE LEITURA POR PERFIL
+════════════════════════════════════════════════════════════════════════════
+
+INICIANTE (3 minutos)
+═══════════════════════════════════════════════════════════════════════════
+1. LEIA_PRIMEIRO.txt (bem-vindo)
+   ↓
+2. Executa: ./run.sh ou run.bat
+   ↓
+3. Joga!
+
+
+DESENVOLVEDOR (30 minutos)
+═══════════════════════════════════════════════════════════════════════════
+1. README.md (arquitetura)
+   ↓
+2. BatalhaNavalLogic.java (entende lógica)
+   ↓
+3. BatalhaNavalGUI.java (entende interface)
+   ↓
+4. INDICE.md (vê tudo junto)
+   ↓
+5. Pronto para customizar!
+
+
+USUÁRIO VS CODE (15 minutos)
+═══════════════════════════════════════════════════════════════════════════
+1. COMO_USAR_VSCODE.md
+   ↓
+2. File → Open Folder
+   ↓
+3. Ctrl + ` (terminal)
+   ↓
+4. javac *.java
+   ↓
+5. java BatalhaNavalGUI
+
+
+QUER ADICIONAR MULTIPLAYER (2 horas)
+═══════════════════════════════════════════════════════════════════════════
+1. README.md (entender estrutura)
+   ↓
+2. INDICE.md "Como Contribuir"
+   ↓
+3. BatalhaNavalLogic.java
+   ├─ enviarJogadaSocket() → implementa
+   └─ receberJogadaSocket() → implementa
+   ↓
+4. Cria: ClienteSocket.java
+   ↓
+5. Cria: ServidorSocket.java
+   ↓
+6. Testa multiplayer!
+
+
+QUER SUBIR NO GITHUB (10 minutos)
+═══════════════════════════════════════════════════════════════════════════
+1. GITHUB_UPLOAD.md
+   ↓
+2. Siga 7 passos
+   ├─ git init
+   ├─ git add .
+   ├─ git commit
+   ├─ git branch -M main
+   ├─ git remote add origin
+   ├─ git push -u origin main
+   └─ Pronto!
+
+
+════════════════════════════════════════════════════════════════════════════
+                    ESTRUTURA DO JOGO (Conceitual)
+════════════════════════════════════════════════════════════════════════════
+
+MODELO DE DADOS (BatalhaNavalLogic)
+┌────────────────────────────────────┐
+│         10x10 Matrizes             │
+├────────────────────────────────────┤
+│ Valor │ Significado │ Cor          │
+├───────┼─────────────┼──────────────┤
+│  0    │ AGUA        │ AZUL         │
+│  1    │ NAVIO       │ CINZA        │
+│  2    │ ACERTO      │ VERMELHO     │
+│  3    │ ERRO        │ BRANCO       │
+└────────────────────────────────────┘
+
+
+VISUALIZAÇÃO (BatalhaNavalGUI)
+┌─────────────────────────────────────────────┐
+│              JANELA PRINCIPAL               │
+├─────────────────────────────────────────────┤
+│  Status: Sua vez | Turno: Aguardando      │
+├────────────────────┬────────────────────────┤
+│  Meu Tabuleiro     │  Tab. Inimigo         │
+│  ┌──┬──┬──┬──┐     │  ┌──┬──┬──┬──┐       │
+│  │██│ │ │ │ │     │  │  │  │  │  │       │
+│  ├──┼──┼──┼──┤     │  ├──┼──┼──┼──┤       │
+│  │██│ │ │XX│ │     │  │  │XX│  │  │       │
+│  └──┴──┴──┴──┘     │  └──┴──┴──┴──┘       │
+│  (Só visualiza)    │  (Clicável)          │
+├────────────────────┴────────────────────────┤
+│ [ Novo Jogo ]           [ Sair ]           │
+└─────────────────────────────────────────────┘
+
+
+════════════════════════════════════════════════════════════════════════════
+                    RESUMO FINAL
+════════════════════════════════════════════════════════════════════════════
+
+PASTA CODIGO/ CONTÉM:
+
+✓ 2 Arquivos Java       = Código funcional (564 linhas)
+✓ 8 Documentos          = Guias e referências (1.648 linhas)
+✓ 2 Scripts             = Execução automática
+✓ 1 Configuração        = Controle Git
+
+TOTAL: 13 arquivos, ~2.212 linhas, ~75 KB
+
+TUDO ESTÁ:
+✓ Bem organizado
+✓ Bem documentado
+✓ Bem comentado
+✓ Pronto para usar
+✓ Pronto para GitHub
+✓ Pronto para expandir
+
+════════════════════════════════════════════════════════════════════════════
+
+Comece pelo: LEIA_PRIMEIRO.txt
+
+Depois vá para: run.sh ou run.bat
+
+Então jogue e divirta-se!
+
+════════════════════════════════════════════════════════════════════════════
