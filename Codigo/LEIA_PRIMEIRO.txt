@@ -1,0 +1,312 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║              BATALHA NAVAL EM JAVA SWING - COMECE AQUI                    ║
+║                                                                            ║
+║                        PROJETO COMPLETO E FUNCIONAL                        ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+BEM-VINDO!
+
+Este é um jogo de Batalha Naval completo, desenvolvido em Java com interface
+gráfica usando Swing. Está pronto para rodar em seu computador.
+
+════════════════════════════════════════════════════════════════════════════
+
+🚀 COMECE AQUI (3 MINUTOS)
+════════════════════════════════════════════════════════════════════════════
+
+1. CERTIFIQUE-SE QUE JAVA ESTÁ INSTALADO
+   
+   Abra terminal/prompt e digite:
+     java -version
+     javac -version
+   
+   Se não funcionar, instale Java em: https://www.oracle.com/java/
+
+2. EXECUTE O SCRIPT
+
+   Windows:
+     Duplo clique em run.bat
+     (ou digite: run.bat no terminal)
+   
+   Linux/macOS:
+     Terminal: chmod +x run.sh && ./run.sh
+
+3. APROVEITE O JOGO!
+   - Clique no tabuleiro da direita para atacar
+   - Vermelho = acerto (ataque novamente)
+   - Branco = erro (passa o turno)
+   - Primeiro a destruir 17 células vence!
+
+
+════════════════════════════════════════════════════════════════════════════
+
+📂 ARQUIVOS NO PROJETO
+════════════════════════════════════════════════════════════════════════════
+
+CÓDIGO (Não mexa, funciona perfeitamente):
+  ✓ BatalhaNavalLogic.java     - Lógica do jogo
+  ✓ BatalhaNavalGUI.java       - Interface gráfica
+
+SCRIPTS DE EXECUÇÃO (Use um destes):
+  ✓ run.sh        - Linux/macOS
+  ✓ run.bat       - Windows
+
+GUIAS DE USO (Leia conforme sua situação):
+  
+  Quer começar agora?
+    → INSTRUCOES_EXECUCAO.md
+  
+  Usando VS Code?
+    → COMO_USAR_VSCODE.md
+  
+  Quer entender o código?
+    → README.md
+  
+  Quer um mapa completo?
+    → INDICE.md
+  
+  Quer fazer upload para GitHub?
+    → GITHUB_UPLOAD.md
+  
+  Resumo visual?
+    → RESUMO_PROJETO.txt
+
+CONFIGURAÇÃO:
+  ✓ .gitignore    - Para controle de versão
+
+
+════════════════════════════════════════════════════════════════════════════
+
+❓ QUAL OPÇÃO É VOCÊ?
+════════════════════════════════════════════════════════════════════════════
+
+[ ] SOU INICIANTE
+    Leia: INSTRUCOES_EXECUCAO.md
+    Depois: Execute run.sh ou run.bat
+    Pronto!
+
+[ ] USO VS CODE
+    Leia: COMO_USAR_VSCODE.md
+    Depois: Abra a pasta em VS Code
+    Depois: Terminal integrado + javac *.java
+    Pronto!
+
+[ ] SOU DESENVOLVEDOR
+    Leia: README.md
+    Revise: BatalhaNavalLogic.java
+    Revise: BatalhaNavalGUI.java
+    Teste e customize!
+
+[ ] QUERO COLOCAR NO GITHUB
+    Leia: GITHUB_UPLOAD.md
+    Depois: Siga os 7 passos
+    Pronto!
+
+[ ] QUERO EXPANDIR COM MULTIPLAYER
+    Leia: INDICE.md (seção "Como Contribuir")
+    Depois: Implemente enviarJogadaSocket()
+    Depois: Implemente receberJogadaSocket()
+    Pronto!
+
+
+════════════════════════════════════════════════════════════════════════════
+
+✅ REQUISITOS DO PROJETO
+════════════════════════════════════════════════════════════════════════════
+
+Interface:
+  ✓ Dois tabuleiros 10x10
+  ✓ Cores: azul, cinza, vermelho, branco
+  ✓ Status e indicador de turno
+  ✓ Botões Novo Jogo e Sair
+
+Lógica:
+  ✓ Classe BatalhaNavalLogic separada
+  ✓ Sistema de turnos
+  ✓ Detecção de vitória/derrota
+  ✓ IA aleatória
+
+Rede:
+  ✓ Placeholders para Socket prontos
+  ✓ Esperando implementação de multiplayer
+
+Execução:
+  ✓ Sem dependências externas
+  ✓ Rodar em VS Code
+  ✓ Scripts automáticos
+
+
+════════════════════════════════════════════════════════════════════════════
+
+🎮 COMO JOGAR
+════════════════════════════════════════════════════════════════════════════
+
+1. Janela abre com 2 tabuleiros lado a lado
+2. Esquerda = SEU TABULEIRO (cinza com seus navios)
+3. Direita = TABULEIRO INIMIGO (azul, para atacar)
+4. CLIQUE em qualquer quadrado AZUL para atacar
+5. Se acertar (vermelho): ataca novamente
+6. Se errar (branco): passa a vez para o inimigo
+7. Primeira a destruir 17 células de navios vence!
+
+
+════════════════════════════════════════════════════════════════════════════
+
+📋 PRÉ-REQUISITOS (SOMENTE ISSO!)
+════════════════════════════════════════════════════════════════════════════
+
+✓ Java Development Kit (JDK) 8 ou superior
+✓ Nenhuma outra coisa!
+
+Verificar:
+  java -version
+  javac -version
+
+Instalar se não tiver:
+  https://www.oracle.com/java/
+
+
+════════════════════════════════════════════════════════════════════════════
+
+🛠️ COMO EXECUTAR (MANUALMENTE)
+════════════════════════════════════════════════════════════════════════════
+
+Se os scripts não funcionarem:
+
+1. Abra terminal na pasta Codigo/
+
+2. Compile:
+   javac BatalhaNavalLogic.java BatalhaNavalGUI.java
+
+3. Execute:
+   java BatalhaNavalGUI
+
+Pronto! A janela do jogo abrirá.
+
+
+════════════════════════════════════════════════════════════════════════════
+
+📊 ESTRUTURA DO PROJETO
+════════════════════════════════════════════════════════════════════════════
+
+BatalhaNavalLogic.java (Lógica)
+├─ Matriz 10x10 para cada tabuleiro
+├─ Posicionamento de navios (8 navios, 20 células)
+├─ Sistema de turnos
+├─ Verificação de acertos/erros
+├─ IA aleatória
+└─ Placeholders para Socket
+
+BatalhaNavalGUI.java (Interface)
+├─ Swing com JFrame e JPanel
+├─ 200 botões (2 tabuleiros 10x10)
+├─ Cores atualizadas em tempo real
+├─ Indicador de turno
+├─ Diálogos de vitória/derrota
+└─ Menu para novo jogo
+
+
+════════════════════════════════════════════════════════════════════════════
+
+✨ QUALIDADES DO CÓDIGO
+════════════════════════════════════════════════════════════════════════════
+
+✓ Código limpo e bem comentado
+✓ Separação clara entre lógica e interface (MVC)
+✓ Sem dependências externas (apenas Java nativo)
+✓ Compatível com Java 8+
+✓ Multiplataforma (Windows, Linux, macOS)
+✓ Estruturado para fácil expansão
+✓ Pronto para multiplayer (placeholders)
+✓ Documentação completa
+
+
+════════════════════════════════════════════════════════════════════════════
+
+💡 PRÓXIMAS ETAPAS
+════════════════════════════════════════════════════════════════════════════
+
+Depois de jogar e entender:
+
+1. CUSTOMIZAR
+   - Mude as cores em BatalhaNavalGUI.java
+   - Altere o tamanho do tabuleiro
+   - Ajuste a IA
+   
+2. ADICIONAR SOCKET
+   - Leia INDICE.md → "Como Contribuir"
+   - Implemente enviarJogadaSocket()
+   - Implemente receberJogadaSocket()
+   
+3. SUBIR NO GITHUB
+   - Leia GITHUB_UPLOAD.md
+   - Faça 7 passos simples
+   - Compartilhe com o mundo!
+
+
+════════════════════════════════════════════════════════════════════════════
+
+📞 PROBLEMAS?
+════════════════════════════════════════════════════════════════════════════
+
+"Java não encontrado"
+  → Instale JDK em https://www.oracle.com/java/
+
+"Não compila"
+  → Leia INSTRUCOES_EXECUCAO.md seção Troubleshooting
+
+"A janela não abre"
+  → Verifique se sua máquina tem interface gráfica
+  → Teste em um PC comum (não servidor)
+
+"Quero entender o código"
+  → Leia README.md com todos os detalhes
+  → Consulte INDICE.md para mapa completo
+
+"Preciso de ajuda"
+  → Revise os 5 arquivos .md
+  → Todo caso é coberto lá
+
+
+════════════════════════════════════════════════════════════════════════════
+
+🎯 PRÓXIMO PASSO
+════════════════════════════════════════════════════════════════════════════
+
+ESCOLHA UMA OPÇÃO:
+
+1️⃣  Quer rodar AGORA?
+    → Execute: ./run.sh ou run.bat
+    → Pronto! Jogue!
+
+2️⃣  Quer entender como funciona?
+    → Abra: README.md
+    → Depois: Revise os .java
+
+3️⃣  Usa VS CODE?
+    → Abra: COMO_USAR_VSCODE.md
+    → Siga: Passo-a-passo
+
+4️⃣  Quer colocar no GitHub?
+    → Abra: GITHUB_UPLOAD.md
+    → Siga: 7 passos simples
+
+5️⃣  Quer um mapa completo?
+    → Abra: INDICE.md
+    → Entenda: Toda a estrutura
+
+
+════════════════════════════════════════════════════════════════════════════
+
+                        BOM JOGO! 🎮
+
+════════════════════════════════════════════════════════════════════════════
+
+Desenvolvido com: Java 8+ e Swing
+Status: Completo e Funcional
+Pronto para: Jogar, Aprender, Customizar, Multiplicar
+Documentação: Completa
+
+════════════════════════════════════════════════════════════════════════════

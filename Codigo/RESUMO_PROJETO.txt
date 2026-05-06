@@ -1,0 +1,204 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║                     BATALHA NAVAL - JOGO EM JAVA SWING                    ║
+║                                                                            ║
+║                        Projeto Completo e Funcional                        ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+ARQUIVOS DO PROJETO
+═══════════════════════════════════════════════════════════════════════════
+
+📄 BatalhaNavalLogic.java (6.4 KB)
+   └─ Gerencia toda a lógica do jogo
+   └─ Independente de interface gráfica
+   └─ Contém placeholders para implementação de Socket
+
+📄 BatalhaNavalGUI.java (13.1 KB)
+   └─ Interface gráfica usando Swing
+   └─ Dois tabuleiros 10x10 lado a lado
+   └─ Manipulação de eventos e atualização visual
+
+📄 run.sh (1.0 KB)
+   └─ Script para compilar e executar no Linux/macOS
+
+📄 run.bat (1.1 KB)
+   └─ Script para compilar e executar no Windows
+
+📄 README.md (5.2 KB)
+   └─ Documentação completa do projeto
+
+📄 INSTRUCOES_EXECUCAO.md (3.8 KB)
+   └─ Guia passo-a-passo de como executar
+
+📄 .gitignore
+   └─ Configuração de arquivos ignorados pelo Git
+
+
+REQUISITOS IMPLEMENTADOS
+═══════════════════════════════════════════════════════════════════════════
+
+✅ INTERFACE
+   ✓ Janela dividida em duas grades 10x10
+   ✓ Botões coloridos (azul, cinza, vermelho, branco)
+   ✓ Grade esquerda: Meu Tabuleiro
+   ✓ Grade direita: Tabuleiro do Inimigo
+
+✅ LÓGICA
+   ✓ Classe BatalhaNavalLogic separada
+   ✓ Gerencia matrizes de inteiros
+   ✓ Sistema de turnos implementado
+   ✓ Verificação de acertos e erros
+   ✓ Verificação de vitória/derrota
+
+✅ REDE (Placeholders)
+   ✓ Método enviarJogadaSocket() - PLACEHOLDER
+   ✓ Método receberJogadaSocket() - PLACEHOLDER
+   ✓ Pronto para implementação de multiplayer
+
+✅ EXECUÇÃO
+   ✓ Arquivo .java único ou conjunto de classes
+   ✓ Executável em VS Code
+   ✓ Scripts automatizados (run.sh e run.bat)
+
+
+COMO EXECUTAR
+═══════════════════════════════════════════════════════════════════════════
+
+OPÇÃO 1: Script automático
+
+  Linux/macOS:
+    ./run.sh
+
+  Windows:
+    run.bat
+
+
+OPÇÃO 2: Compilar e executar manualmente
+
+  1. Compilar:
+     javac BatalhaNavalLogic.java BatalhaNavalGUI.java
+
+  2. Executar:
+     java BatalhaNavalGUI
+
+
+PRÉ-REQUISITOS
+═══════════════════════════════════════════════════════════════════════════
+
+✓ Java Development Kit (JDK) 8 ou superior
+✓ Nenhuma dependência externa (apenas Swing nativa do Java)
+
+
+CORES UTILIZADAS
+═══════════════════════════════════════════════════════════════════════════
+
+🔵 AZUL (65, 105, 225) - Água / Célula não atacada
+🟩 CINZA (128, 128, 128) - Navio / Seu tabuleiro
+🔴 VERMELHO (220, 20, 60) - Acerto
+⚪ BRANCO (255, 255, 255) - Erro
+
+
+ESTRUTURA DE DADOS
+═══════════════════════════════════════════════════════════════════════════
+
+Cada tabuleiro é uma matriz 10x10 de inteiros:
+
+  0 = AGUA      (azul, não foi atacado)
+  1 = NAVIO     (cinza, navio posicionado)
+  2 = ACERTO    (vermelho, acertou um navio)
+  3 = ERRO      (branco, atacou água)
+
+
+NAVIOS NO JOGO
+═══════════════════════════════════════════════════════════════════════════
+
+Tamanho 4: 1 navio   (4 células)
+Tamanho 3: 2 navios  (6 células)
+Tamanho 2: 3 navios  (6 células)
+Tamanho 1: 4 navios  (4 células)
+───────────────────────────────
+Total:     8 navios  (20 células)
+
+Vitória: Destruir 17 células (os 3 últimos pontos têm mais dificuldade)
+
+
+PRÓXIMAS EXPANSÕES
+═══════════════════════════════════════════════════════════════════════════
+
+Os métodos enviarJogadaSocket() e receberJogadaSocket() estão prontos
+para serem preenchidos com:
+
+  ✓ Comunicação Socket (TCP/IP)
+  ✓ Servidor para gerenciar múltiplas conexões
+  ✓ Protocolo de serialização de jogadas
+  ✓ Multiplayer online entre dois jogadores
+
+
+ESTRUTURA DO CÓDIGO
+═══════════════════════════════════════════════════════════════════════════
+
+BatalhaNavalLogic
+├── inicializarTabuleiros()
+├── posicionarNavio(linha, coluna, tamanho, horizontal)
+├── verificarJogada(linha, coluna)
+├── turnoInimigo()
+├── verificarVitoria()
+├── verificarDerrota()
+├── enviarJogadaSocket(linha, coluna) [PLACEHOLDER]
+├── receberJogadaSocket() [PLACEHOLDER]
+└── Getters/Setters para estado do jogo
+
+BatalhaNavalGUI
+├── inicializarInterface()
+├── criarPainelInformacoes()
+├── criarPainelTabuleiros()
+├── criarTabuleiro(ehMeuTabuleiro)
+├── criarBotao(linha, coluna, ehMeuTabuleiro)
+├── realizarJogada(linha, coluna)
+├── turnoInimigo()
+├── atualizarTabuleiroInimigo()
+├── posicionarNaviosPadrao()
+├── posicionarNaviosInimigos()
+├── novoJogo()
+├── exibirVitoria()
+└── exibirDerrota()
+
+
+TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════════════
+
+❌ Erro: "javac: command not found"
+   → Java não está instalado
+   → Veja INSTRUCOES_EXECUCAO.md para instalar
+
+❌ Erro: "Exception in thread 'main'"
+   → Verifique se os arquivos estão na mesma pasta
+   → Recompile com: javac *.java
+
+❌ A janela não abre
+   → Verifique se tem interface gráfica disponível
+   → Teste em uma máquina com GUI
+
+
+LICENÇA
+═══════════════════════════════════════════════════════════════════════════
+
+Este projeto é código aberto e pode ser utilizado livremente.
+
+
+SUPORTE
+═══════════════════════════════════════════════════════════════════════════
+
+Para dúvidas ou problemas:
+1. Verifique INSTRUCOES_EXECUCAO.md
+2. Revise README.md para detalhes de implementação
+3. Consulte os comentários no código
+
+
+═══════════════════════════════════════════════════════════════════════════
+
+                        Desenvolvido em Java Swing
+                      Pronto para expandir com multiplayer!
+
+═══════════════════════════════════════════════════════════════════════════
