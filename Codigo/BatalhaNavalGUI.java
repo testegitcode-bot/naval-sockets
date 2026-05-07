@@ -25,12 +25,15 @@ public class BatalhaNavalGUI extends JFrame {
     private Color corErro = new Color(255, 255, 255); // Branco
     private Color corFundo = new Color(20, 20, 40); // Fundo escuro
 
-    public BatalhaNavalGUI() {
-        logica = new BatalhaNavalLogic();
-        inicializarInterface();
-        posicionarNaviosPadrao();
-        posicionarNaviosInimigos();
-    }
+public BatalhaNavalGUI() {
+    logica = new BatalhaNavalLogic();
+    inicializarInterface();
+    posicionarNaviosPadrao();
+    posicionarNaviosInimigos();
+    
+    // FAÇA ISSO AQUI:
+    atualizarTabuleiro(true); 
+}
 
     private void inicializarInterface() {
         setTitle("Batalha Naval");
@@ -217,7 +220,7 @@ public class BatalhaNavalGUI extends JFrame {
     }
 
     private void atualizarTabuleiroInimigo() {
-        int[][] estado = logica.getEstadoTabuleinoInimigo();
+        int[][] estado = logica.getEstadoTabuleiroInimigo();
         for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
             for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
                 atualizarBotao(botoesTabuleiroInimigo[i][j], estado[i][j], false);
@@ -226,7 +229,7 @@ public class BatalhaNavalGUI extends JFrame {
     }
 
     private void atualizarTabuleiro(boolean ehMeuTabuleiro) {
-        int[][] estado = ehMeuTabuleiro ? logica.getEstadoTabuleinoMeu() : logica.getEstadoTabuleinoInimigo();
+        int[][] estado = ehMeuTabuleiro ? logica.getEstadoTabuleinoMeu() : logica.getEstadoTabuleiroInimigo();
         JButton[][] botoes = ehMeuTabuleiro ? botoesMeuTabuleiro : botoesTabuleiroInimigo;
 
         for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
@@ -236,23 +239,30 @@ public class BatalhaNavalGUI extends JFrame {
         }
     }
 
-    private void atualizarBotao(JButton botao, int estado, boolean ehMeuTabuleiro) {
-        if (estado == BatalhaNavalLogic.getACERTO()) {
-            botao.setBackground(corAcerto);
-            botao.setText("X");
-            botao.setForeground(Color.WHITE);
-            botao.setFont(new Font("Arial", Font.BOLD, 18));
-        } else if (estado == BatalhaNavalLogic.getERRO()) {
-            botao.setBackground(corErro);
-            botao.setText("·");
-            botao.setForeground(Color.BLACK);
-            botao.setFont(new Font("Arial", Font.BOLD, 16));
-        } else if (estado == BatalhaNavalLogic.getAGUA()) {
+private void atualizarBotao(JButton botao, int estado, boolean ehMeuTabuleiro) {
+    if (estado == BatalhaNavalLogic.getACERTO()) {
+        botao.setBackground(corAcerto);
+        botao.setText("X");
+        botao.setForeground(Color.WHITE);
+    } else if (estado == BatalhaNavalLogic.getERRO()) {
+        botao.setBackground(corErro);
+        botao.setText("·");
+        botao.setForeground(Color.BLACK);
+    } else if (estado == 1) { // 1 = Navio na BatalhaNavalLogic
+        // Só mostramos o navio se for o MEU tabuleiro
+        // No tabuleiro do inimigo, ele deve continuar parecendo ÁGUA (Azul)
+        if (ehMeuTabuleiro) {
+            botao.setBackground(corNavio);
+            botao.setText("");
+        } else {
             botao.setBackground(corAgua);
             botao.setText("");
         }
+    } else {
+        botao.setBackground(corAgua);
+        botao.setText("");
     }
-
+}
     private void posicionarNaviosPadrao() {
         // Navios: 1 de 4, 2 de 3, 3 de 2, 4 de 1
         logica.posicionarNavio(0, 0, 4, true);   // Navio de 4
@@ -267,7 +277,7 @@ public class BatalhaNavalGUI extends JFrame {
 
     private void posicionarNaviosInimigos() {
         // Posições aleatórias para o inimigo
-        int[][] tabuleinoInimigo = logica.getTabuleinoInimigo();
+        int[][] tabuleiroInimigo = logica.getTabuleiroInimigo();
         int naviosPositos = 0;
         int[] tamanhos = {4, 3, 3, 2, 2, 2, 1, 1};
 
@@ -354,4 +364,6 @@ public class BatalhaNavalGUI extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new BatalhaNavalGUI());
     }
+    
+    
 }
