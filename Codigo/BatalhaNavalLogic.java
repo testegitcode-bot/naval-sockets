@@ -58,7 +58,7 @@ public class BatalhaNavalLogic {
     }
 
     /**
-     * Posiciona um navio no tabuleiro
+     * Posiciona um navio no meu tabuleiro
      * @param linha Linha inicial do navio
      * @param coluna Coluna inicial do navio
      * @param tamanho Tamanho do navio
@@ -66,7 +66,7 @@ public class BatalhaNavalLogic {
      * @return true se foi posicionado com sucesso
      */
     public boolean posicionarNavio(int linha, int coluna, int tamanho, boolean horizontal) {
-        if (!validarPosicaoNavio(linha, coluna, tamanho, horizontal)) {
+        if (!validarPosicaoNavio(linha, coluna, tamanho, horizontal, meuTabuleiro)) {
             return false;
         }
 
@@ -83,16 +83,42 @@ public class BatalhaNavalLogic {
         return true;
     }
 
-    private boolean validarPosicaoNavio(int linha, int coluna, int tamanho, boolean horizontal) {
+    /**
+     * Posiciona um navio no tabuleiro do inimigo
+     * @param linha Linha inicial do navio
+     * @param coluna Coluna inicial do navio
+     * @param tamanho Tamanho do navio
+     * @param horizontal true para horizontal, false para vertical
+     * @return true se foi posicionado com sucesso
+     */
+    public boolean posicionarNavioInimigo(int linha, int coluna, int tamanho, boolean horizontal) {
+        if (!validarPosicaoNavio(linha, coluna, tamanho, horizontal, tabuleiroInimigo)) {
+            return false;
+        }
+
+        if (horizontal) {
+            for (int j = coluna; j < coluna + tamanho; j++) {
+                tabuleiroInimigo[linha][j] = NAVIO;
+            }
+        } else {
+            for (int i = linha; i < linha + tamanho; i++) {
+                tabuleiroInimigo[i][coluna] = NAVIO;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean validarPosicaoNavio(int linha, int coluna, int tamanho, boolean horizontal, int[][] tabuleiro) {
         if (horizontal) {
             if (coluna + tamanho > TAMANHO_TABULEIRO) return false;
             for (int j = coluna; j < coluna + tamanho; j++) {
-                if (meuTabuleiro[linha][j] != AGUA) return false;
+                if (tabuleiro[linha][j] != AGUA) return false;
             }
         } else {
             if (linha + tamanho > TAMANHO_TABULEIRO) return false;
             for (int i = linha; i < linha + tamanho; i++) {
-                if (meuTabuleiro[i][coluna] != AGUA) return false;
+                if (tabuleiro[i][coluna] != AGUA) return false;
             }
         }
         return true;

@@ -284,9 +284,7 @@ public class BatalhaNavalGUI extends JFrame {
     }
 
     private void posicionarNaviosInimigos() {
-        // Posições aleatórias para o inimigo
-        int[][] tabuleiroInimigo = logica.getTabuleiroInimigo();
-        int naviosPositos = 0;
+        // Posiciona navios aleatoriamente no tabuleiro do inimigo
         int[] tamanhos = {4, 3, 3, 2, 2, 2, 1, 1};
 
         for (int tamanho : tamanhos) {
@@ -296,7 +294,8 @@ public class BatalhaNavalGUI extends JFrame {
                 int coluna = (int) (Math.random() * TAMANHO_TABULEIRO);
                 boolean horizontal = Math.random() < 0.5;
 
-                if (logica.posicionarNavio(linha, coluna, tamanho, horizontal)) {
+                // Usa novo método específico para posicionar navios do inimigo
+                if (logica.posicionarNavioInimigo(linha, coluna, tamanho, horizontal)) {
                     posicionado = true;
                 }
             }
