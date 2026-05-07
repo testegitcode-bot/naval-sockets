@@ -3,19 +3,27 @@
  * Controla os tabuleiros, validação de jogadas e sistema de turnos
  */
 public class BatalhaNavalLogic {
+    // === CONSTANTES DO JOGO ===
     private static final int TAMANHO_TABULEIRO = 10;
-    private static final int AGUA = 0;
-    private static final int NAVIO = 1;
-    private static final int ACERTO = 2;
-    private static final int ERRO = 3;
-    public static final String MSG_TIRO = "TIRO";
-    public static final String MSG_ACERTO = "ACERTO";
-    public static final String MSG_ERRO = "ERRO";
 
-    private int[][] meuTabuleiro;
-    private int[][] tabuleiroInimigo;
-    private int[][] estadoTabuleinoMeu;
-    private int[][] estadotabuleiroInimigo;
+    // Estados das células do tabuleiro
+    private static final int AGUA = 0;      // Célula vazia (não atacada)
+    private static final int NAVIO = 1;     // Célula com navio
+    private static final int ACERTO = 2;    // Célula atacada com acerto
+    private static final int ERRO = 3;      // Célula atacada com erro
+
+    // === PROTOCOLO DE COMUNICAÇÃO (para multiplayer via Socket) ===
+    // Formato: COMANDO;parametro1;parametro2
+    public static final String NET_TIRO = "TIRO";           // Ex: TIRO;4;5
+    public static final String NET_RESULTADO = "RES";       // Ex: RES;ACERTO ou RES;ERRO
+    public static final String NET_TURNO = "TURNO";         // Sincronização de turno
+    public static final String NET_ACERTO = "ACERTO";       // Resultado: acertou
+    public static final String NET_ERRO = "ERRO";           // Resultado: errou
+
+    private int[][] meuTabuleiro;           // Meus navios
+    private int[][] tabuleiroInimigo;       // Navios do inimigo (desconhecidos)
+    private int[][] estadoTabuleinoMeu;     // Histórico dos ataques sofridos (para mostrar ao jogador)
+    private int[][] estadoTabuleiroInimigo; // Histórico dos meus ataques
 
     private boolean minhaVez;
     private int naviosDestruidos;
@@ -29,12 +37,12 @@ public class BatalhaNavalLogic {
         meuTabuleiro = new int[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
         tabuleiroInimigo = new int[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
         estadoTabuleinoMeu = new int[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
-        estadotabuleiroInimigo = new int[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
+        estadoTabuleiroInimigo = new int[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
 
         preencherComAgua(meuTabuleiro);
         preencherComAgua(tabuleiroInimigo);
         preencherComAgua(estadoTabuleinoMeu);
-        preencherComAgua(estadotabuleiroInimigo);
+        preencherComAgua(estadoTabuleiroInimigo);
 
         minhaVez = true;
         naviosDestruidos = 0;
@@ -97,17 +105,17 @@ public class BatalhaNavalLogic {
      * @return 0 para erro, 1 para acerto, -1 para jogada inválida
      */
     public int verificarJogada(int linha, int coluna) {
-        if (estadotabuleiroInimigo[linha][coluna] != AGUA) {
+        if (estadoTabuleiroInimigo[linha][coluna] != AGUA) {
             return -1; // Já foi atacado
         }
 
         if (tabuleiroInimigo[linha][coluna] == NAVIO) {
-            estadotabuleiroInimigo[linha][coluna] = ACERTO;
+            estadoTabuleiroInimigo[linha][coluna] = ACERTO;
             naviosInimigosDestruidos++;
             System.out.println("[LOCAL] Acerto em (" + linha + ", " + coluna + ")!");
             return 1; // Acerto
         } else {
-            estadotabuleiroInimigo[linha][coluna] = ERRO;
+            estadoTabuleiroInimigo[linha][coluna] = ERRO;
             System.out.println("[LOCAL] Erro em (" + linha + ", " + coluna + ")!");
             return 0; // Erro
         }
@@ -115,8 +123,14 @@ public class BatalhaNavalLogic {
 
     /**
      * Simula o turno do inimigo (com IA aleatória)
+     * TODO: Substituir lógica de IA por recebimento de coordenadas via Socket
+     * Este método será removido quando implementar multiplayer via rede.
+     * A IA aqui é apenas para teste local do jogo.
      */
     public void turnoInimigo() {
+        // TODO: Quando multiplayer estiver ativo, receber coordenadas via receberJogadaSocket()
+        // por enquanto, geramos aleatoriamente para testes locais
+
         int linha, coluna;
         boolean posicaoValida;
 
@@ -129,10 +143,10 @@ public class BatalhaNavalLogic {
         if (meuTabuleiro[linha][coluna] == NAVIO) {
             estadoTabuleinoMeu[linha][coluna] = ACERTO;
             naviosDestruidos++;
-            System.out.println("[INIMIGO] Acertou em (" + linha + ", " + coluna + ")!");
+            System.out.println("[IA LOCAL] Acertou em (" + linha + ", " + coluna + ")!");
         } else {
             estadoTabuleinoMeu[linha][coluna] = ERRO;
-            System.out.println("[INIMIGO] Errou em (" + linha + ", " + coluna + ")!");
+            System.out.println("[IA LOCAL] Errou em (" + linha + ", " + coluna + ")!");
         }
     }
 
@@ -161,7 +175,7 @@ public class BatalhaNavalLogic {
     }
 
     public int[][] getEstadoTabuleiroInimigo() {
-        return estadotabuleiroInimigo;
+        return estadoTabuleiroInimigo;
     }
 
     public boolean isMinhaVez() {

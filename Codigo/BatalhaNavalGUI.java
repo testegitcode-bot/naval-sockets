@@ -25,15 +25,13 @@ public class BatalhaNavalGUI extends JFrame {
     private Color corErro = new Color(255, 255, 255); // Branco
     private Color corFundo = new Color(20, 20, 40); // Fundo escuro
 
-public BatalhaNavalGUI() {
-    logica = new BatalhaNavalLogic();
-    inicializarInterface();
-    posicionarNaviosPadrao();
-    posicionarNaviosInimigos();
-    
-    // FAÇA ISSO AQUI:
-    atualizarTabuleiro(true); 
-}
+    public BatalhaNavalGUI() {
+        logica = new BatalhaNavalLogic();
+        inicializarInterface();
+        posicionarNaviosPadrao();
+        posicionarNaviosInimigos();
+        atualizarTabuleiro(true); // Mostra os navios no tabuleiro do jogador
+    }
 
     private void inicializarInterface() {
         setTitle("Batalha Naval");
@@ -221,48 +219,58 @@ public BatalhaNavalGUI() {
 
     private void atualizarTabuleiroInimigo() {
         int[][] estado = logica.getEstadoTabuleiroInimigo();
+        int[][] navios = logica.getTabuleiroInimigo();
         for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
             for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
-                atualizarBotao(botoesTabuleiroInimigo[i][j], estado[i][j], false);
+                atualizarBotao(botoesTabuleiroInimigo[i][j], estado[i][j], navios[i][j], false);
             }
         }
     }
 
     private void atualizarTabuleiro(boolean ehMeuTabuleiro) {
         int[][] estado = ehMeuTabuleiro ? logica.getEstadoTabuleinoMeu() : logica.getEstadoTabuleiroInimigo();
+        int[][] navios = ehMeuTabuleiro ? logica.getMeuTabuleiro() : logica.getTabuleiroInimigo();
         JButton[][] botoes = ehMeuTabuleiro ? botoesMeuTabuleiro : botoesTabuleiroInimigo;
 
         for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
             for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
-                atualizarBotao(botoes[i][j], estado[i][j], ehMeuTabuleiro);
+                atualizarBotao(botoes[i][j], estado[i][j], navios[i][j], ehMeuTabuleiro);
             }
         }
     }
 
-private void atualizarBotao(JButton botao, int estado, boolean ehMeuTabuleiro) {
-    if (estado == BatalhaNavalLogic.getACERTO()) {
-        botao.setBackground(corAcerto);
-        botao.setText("X");
-        botao.setForeground(Color.WHITE);
-    } else if (estado == BatalhaNavalLogic.getERRO()) {
-        botao.setBackground(corErro);
-        botao.setText("·");
-        botao.setForeground(Color.BLACK);
-    } else if (estado == 1) { // 1 = Navio na BatalhaNavalLogic
-        // Só mostramos o navio se for o MEU tabuleiro
-        // No tabuleiro do inimigo, ele deve continuar parecendo ÁGUA (Azul)
-        if (ehMeuTabuleiro) {
-            botao.setBackground(corNavio);
-            botao.setText("");
+    private void atualizarBotao(JButton botao, int estado, int navio, boolean ehMeuTabuleiro) {
+        if (estado == BatalhaNavalLogic.getACERTO()) {
+            // Célula foi atacada e acertou um navio
+            botao.setBackground(corAcerto);
+            botao.setText("X");
+            botao.setForeground(Color.WHITE);
+            botao.setFont(new Font("Arial", Font.BOLD, 16));
+        } else if (estado == BatalhaNavalLogic.getERRO()) {
+            // Célula foi atacada mas errou (água)
+            botao.setBackground(corErro);
+            botao.setText("·");
+            botao.setForeground(Color.BLACK);
+            botao.setFont(new Font("Arial", Font.BOLD, 14));
+        } else if (navio == BatalhaNavalLogic.getNAVIO()) {
+            // Célula tem navio e ainda não foi atacada
+            // Só mostramos o navio se for o MEUS tabuleiro
+            if (ehMeuTabuleiro) {
+                botao.setBackground(corNavio);
+                botao.setText("■");  // Quadrado preenchido para indicar navio
+                botao.setForeground(new Color(90, 90, 90));
+                botao.setFont(new Font("Arial", Font.BOLD, 12));
+            } else {
+                // No tabuleiro do inimigo, não mostramos os navios
+                botao.setBackground(corAgua);
+                botao.setText("");
+            }
         } else {
+            // Célula vazia (água) e não foi atacada
             botao.setBackground(corAgua);
             botao.setText("");
         }
-    } else {
-        botao.setBackground(corAgua);
-        botao.setText("");
     }
-}
     private void posicionarNaviosPadrao() {
         // Navios: 1 de 4, 2 de 3, 3 de 2, 4 de 1
         logica.posicionarNavio(0, 0, 4, true);   // Navio de 4
@@ -341,6 +349,7 @@ private void atualizarBotao(JButton botao, int estado, boolean ehMeuTabuleiro) {
             }
         }
 
+        atualizarTabuleiro(true); // Atualizar para mostrar os novos navios
         labelStatus.setText("Status: Aguardando sua jogada");
         labelTurno.setText("Sua vez");
     }
