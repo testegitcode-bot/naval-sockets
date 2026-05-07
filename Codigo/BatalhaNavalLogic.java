@@ -8,11 +8,14 @@ public class BatalhaNavalLogic {
     private static final int NAVIO = 1;
     private static final int ACERTO = 2;
     private static final int ERRO = 3;
+    public static final String MSG_TIRO = "TIRO";
+    public static final String MSG_ACERTO = "ACERTO";
+    public static final String MSG_ERRO = "ERRO";
 
     private int[][] meuTabuleiro;
-    private int[][] tabuleinoInimigo;
+    private int[][] tabuleiroInimigo;
     private int[][] estadoTabuleinoMeu;
-    private int[][] estadoTabuleinoInimigo;
+    private int[][] estadotabuleiroInimigo;
 
     private boolean minhaVez;
     private int naviosDestruidos;
@@ -24,14 +27,14 @@ public class BatalhaNavalLogic {
 
     private void inicializarTabuleiros() {
         meuTabuleiro = new int[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
-        tabuleinoInimigo = new int[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
+        tabuleiroInimigo = new int[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
         estadoTabuleinoMeu = new int[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
-        estadoTabuleinoInimigo = new int[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
+        estadotabuleiroInimigo = new int[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
 
         preencherComAgua(meuTabuleiro);
-        preencherComAgua(tabuleinoInimigo);
+        preencherComAgua(tabuleiroInimigo);
         preencherComAgua(estadoTabuleinoMeu);
-        preencherComAgua(estadoTabuleinoInimigo);
+        preencherComAgua(estadotabuleiroInimigo);
 
         minhaVez = true;
         naviosDestruidos = 0;
@@ -94,17 +97,17 @@ public class BatalhaNavalLogic {
      * @return 0 para erro, 1 para acerto, -1 para jogada inválida
      */
     public int verificarJogada(int linha, int coluna) {
-        if (estadoTabuleinoInimigo[linha][coluna] != AGUA) {
+        if (estadotabuleiroInimigo[linha][coluna] != AGUA) {
             return -1; // Já foi atacado
         }
 
-        if (tabuleinoInimigo[linha][coluna] == NAVIO) {
-            estadoTabuleinoInimigo[linha][coluna] = ACERTO;
+        if (tabuleiroInimigo[linha][coluna] == NAVIO) {
+            estadotabuleiroInimigo[linha][coluna] = ACERTO;
             naviosInimigosDestruidos++;
             System.out.println("[LOCAL] Acerto em (" + linha + ", " + coluna + ")!");
             return 1; // Acerto
         } else {
-            estadoTabuleinoInimigo[linha][coluna] = ERRO;
+            estadotabuleiroInimigo[linha][coluna] = ERRO;
             System.out.println("[LOCAL] Erro em (" + linha + ", " + coluna + ")!");
             return 0; // Erro
         }
@@ -149,16 +152,16 @@ public class BatalhaNavalLogic {
         return meuTabuleiro;
     }
 
-    public int[][] getTabuleinoInimigo() {
-        return tabuleinoInimigo;
+    public int[][] getTabuleiroInimigo() {
+        return tabuleiroInimigo;
     }
 
     public int[][] getEstadoTabuleinoMeu() {
         return estadoTabuleinoMeu;
     }
 
-    public int[][] getEstadoTabuleinoInimigo() {
-        return estadoTabuleinoInimigo;
+    public int[][] getEstadoTabuleiroInimigo() {
+        return estadotabuleiroInimigo;
     }
 
     public boolean isMinhaVez() {
