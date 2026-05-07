@@ -19,6 +19,9 @@ public class BatalhaNavalGUI extends JFrame {
     private static final int TAMANHO_TABULEIRO = 10;
     private static final int TAMANHO_BOTAO = 40;
 
+    // Identificação do jogador (1 ou 2)
+    private int perfilJogador = 0; // 0 = não selecionado, 1 = jogador 1, 2 = jogador 2
+
     private Color corAgua = new Color(65, 105, 225); // Azul Royal
     private Color corNavio = new Color(128, 128, 128); // Cinza
     private Color corAcerto = new Color(220, 20, 60); // Vermelho Carmesim
@@ -28,9 +31,86 @@ public class BatalhaNavalGUI extends JFrame {
     public BatalhaNavalGUI() {
         logica = new BatalhaNavalLogic();
         inicializarInterface();
+        exibirDialogoSelecaoPerfil();
         posicionarNaviosPadrao();
         posicionarNaviosInimigos();
         atualizarTabuleiro(true); // Mostra os navios no tabuleiro do jogador
+    }
+
+    private void exibirDialogoSelecaoPerfil() {
+        JPanel painelDialog = new JPanel();
+        painelDialog.setLayout(new BoxLayout(painelDialog, BoxLayout.Y_AXIS));
+        painelDialog.setBackground(corFundo);
+        painelDialog.setBorder(new EmptyBorder(20, 20, 20, 20));
+
+        JLabel labelTitulo = new JLabel("Selecione seu Perfil");
+        labelTitulo.setFont(new Font("Arial", Font.BOLD, 18));
+        labelTitulo.setForeground(Color.WHITE);
+        labelTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel labelDescricao = new JLabel("Escolha qual lado você quer jogar");
+        labelDescricao.setFont(new Font("Arial", Font.PLAIN, 12));
+        labelDescricao.setForeground(new Color(200, 200, 200));
+        labelDescricao.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        painelDialog.add(labelTitulo);
+        painelDialog.add(Box.createVerticalStrut(10));
+        painelDialog.add(labelDescricao);
+        painelDialog.add(Box.createVerticalStrut(20));
+
+        // Botões de seleção
+        JButton botaoJogador1 = new JButton("Jogador 1 (Esquerda)");
+        JButton botaoJogador2 = new JButton("Jogador 2 (Direita)");
+
+        botaoJogador1.setFont(new Font("Arial", Font.BOLD, 14));
+        botaoJogador1.setBackground(new Color(70, 130, 180)); // Azul
+        botaoJogador1.setForeground(Color.WHITE);
+        botaoJogador1.setFocusPainted(false);
+        botaoJogador1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        botaoJogador1.setMaximumSize(new Dimension(250, 50));
+
+        botaoJogador2.setFont(new Font("Arial", Font.BOLD, 14));
+        botaoJogador2.setBackground(new Color(178, 34, 34)); // Vermelho
+        botaoJogador2.setForeground(Color.WHITE);
+        botaoJogador2.setFocusPainted(false);
+        botaoJogador2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        botaoJogador2.setMaximumSize(new Dimension(250, 50));
+
+        painelDialog.add(botaoJogador1);
+        painelDialog.add(Box.createVerticalStrut(15));
+        painelDialog.add(botaoJogador2);
+
+        // Criar JOptionPane com os botões
+        int resultado = JOptionPane.showOptionDialog(
+            this,
+            painelDialog,
+            "Batalha Naval - Seleção de Perfil",
+            JOptionPane.NO_OPTION,
+            JOptionPane.PLAIN_MESSAGE,
+            null,
+            new String[]{"Jogador 1 (Esquerda)", "Jogador 2 (Direita)"},
+            "Jogador 1 (Esquerda)"
+        );
+
+        // Definir perfil baseado na escolha
+        if (resultado == 0) {
+            perfilJogador = 1;
+        } else if (resultado == 1) {
+            perfilJogador = 2;
+        } else {
+            // Se fechar o diálogo, padrão é Jogador 1
+            perfilJogador = 1;
+        }
+
+        atualizarTituloJanela();
+    }
+
+    private void atualizarTituloJanela() {
+        if (perfilJogador == 1) {
+            setTitle("Batalha Naval - Jogador 1 (Esquerda)");
+        } else {
+            setTitle("Batalha Naval - Jogador 2 (Direita)");
+        }
     }
 
     private void inicializarInterface() {
@@ -97,14 +177,25 @@ public class BatalhaNavalGUI extends JFrame {
         // Tabuleiro do jogador
         JPanel painelMeuTabuleiro = criarTabuleiro(true);
 
-        // Espaço entre tabuleiros
-        painel.add(Box.createHorizontalStrut(20));
-        painel.add(painelMeuTabuleiro);
-        painel.add(Box.createHorizontalStrut(30));
-
         // Tabuleiro do inimigo
         JPanel painelTabuleiroInimigo = criarTabuleiro(false);
-        painel.add(painelTabuleiroInimigo);
+
+        // Espaço entre tabuleiros
+        painel.add(Box.createHorizontalStrut(20));
+
+        // Ordenar tabuleiros baseado no perfil do jogador
+        if (perfilJogador == 1) {
+            // Jogador 1: seu tabuleiro na esquerda, inimigo na direita
+            painel.add(painelMeuTabuleiro);
+            painel.add(Box.createHorizontalStrut(30));
+            painel.add(painelTabuleiroInimigo);
+        } else {
+            // Jogador 2: tabuleiro inimigo na esquerda, seu tabuleiro na direita
+            painel.add(painelTabuleiroInimigo);
+            painel.add(Box.createHorizontalStrut(30));
+            painel.add(painelMeuTabuleiro);
+        }
+
         painel.add(Box.createHorizontalStrut(20));
 
         return painel;
@@ -334,6 +425,9 @@ public class BatalhaNavalGUI extends JFrame {
     }
 
     private void novoJogo() {
+        // Exibir diálogo de seleção de perfil
+        exibirDialogoSelecaoPerfil();
+
         logica = new BatalhaNavalLogic();
         posicionarNaviosPadrao();
         posicionarNaviosInimigos();
